@@ -1,5 +1,6 @@
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
+export const ODDCREMENT = 'ODDCREMENT';
 
 // Our action creators will return
 // an action packet that our reducer will
@@ -19,6 +20,13 @@ export const increment = dispatch => {
 export const decrement = dispatch => {
   return dispatch = {
     type: DECREMENT,
+    payload: 1
+  }
+};
+
+export const oddcrement = dispatch => {
+  return dispatch = {
+    type: ODDCREMENT,
     payload: 1
   }
 };
