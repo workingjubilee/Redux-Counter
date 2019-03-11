@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { increment, decrement } from '../actions';
+import { increment, decrement, oddcrement } from '../actions';
 
 class Counter extends Component {
-    incrementIfOdd = () => {
-        // Stretch Problem: Implement an increment function that
-        // only increments if the counter value is odd
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
     };
+  }
+
 
     incrementAsync = () => {
         // Stretch Problem: Implement an increment function that
@@ -20,17 +23,18 @@ class Counter extends Component {
         return (
             <p>
                 Clicked: {this.props.count} times
-                <button onClick={() => /* Fill me in */ }>
+                <button onClick={(event) => {this.props.increment()}}>
                     +
                 </button>
-                <button onClick={() => /* Fill me in */ }>
+                <button onClick={(event) => {this.props.decrement()}}>
                     -
                 </button>
                  {/* Uncomment these button tags if you got
                 around to implementing the extra credit functions */}
-                {/* <button onClick={this.incrementIfOdd}>
+                <button onClick={(event) => {this.props.oddcrement()}}>
                     Increment if odd
                 </button>
+                {/*
                 <button onClick={this.incrementAsync}>
                     Increment async
                 </button>  */}
@@ -39,8 +43,8 @@ class Counter extends Component {
     }
 }
 
-// The mapStateToProps function specifies which portion of the 
-// state tree this component needs to receive. In this case, 
+// The mapStateToProps function specifies which portion of the
+// state tree this component needs to receive. In this case,
 // since our redux store is only storing the value of the count,
 // this component receives the whole state. In a more complex
 // redux application, though, it would receive only the relevant
@@ -56,4 +60,4 @@ const mapStateToProps = (state) => {
 // is only a dumb React component. We pass in all of the functions that
 // are reliant on Redux, along with the component itself, so that Redux
 // makes itself known to this component.
-export default connect(mapStateToProps, { increment, decrement })(Counter);
+export default connect(mapStateToProps, { increment, decrement, oddcrement })(Counter);
